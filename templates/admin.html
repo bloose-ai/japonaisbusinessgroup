@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | JBG</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f7f5f1; }
+    .wrap { max-width: 1200px; margin: 30px auto; background: white; border-radius: 10px; padding: 24px; box-shadow: 0 6px 24px rgba(0,0,0,0.08); }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+    .stat { border: 1px solid #eee; border-radius: 8px; padding: 16px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 8px; border-bottom: 1px solid #eee; }
+    a { color: #c99a3b; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>JBG Admin Panel</h1>
+    <p>Signed in as {{ user.email }}</p>
+    <div class="stats">
+      <div class="stat"><strong>Users</strong><br>{{ stats.users }}</div>
+      <div class="stat"><strong>Contacts</strong><br>{{ stats.contacts }}</div>
+      <div class="stat"><strong>Orders</strong><br>{{ stats.orders }}</div>
+    </div>
+    <div class="grid">
+      <div>
+        <h3>Recent Contacts</h3>
+        <table>
+          <tr><th>Name</th><th>Email</th><th>Subject</th></tr>
+          {% for contact in contacts %}
+          <tr><td>{{ contact.name }}</td><td>{{ contact.email }}</td><td>{{ contact.subject }}</td></tr>
+          {% endfor %}
+        </table>
+      </div>
+      <div>
+        <h3>Recent Orders</h3>
+        <table>
+          <tr><th>Order ID</th><th>Customer</th><th>Total</th></tr>
+          {% for order in orders %}
+          <tr><td>{{ order.id }}</td><td>{{ order.customer_name }}</td><td>${{ order.total }}</td></tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    <p><a href="/logout">Logout</a></p>
+  </div>
+</body>
+</html>

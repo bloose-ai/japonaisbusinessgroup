@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account | JBG</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f7f5f1; }
+    .wrap { max-width: 960px; margin: 40px auto; background: white; border-radius: 10px; padding: 24px; box-shadow: 0 6px 24px rgba(0,0,0,0.08); }
+    .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .card { border: 1px solid #eee; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 8px; border-bottom: 1px solid #eee; }
+    a { color: #c99a3b; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1>My Account</h1>
+        <p>Welcome, {{ user.name }}</p>
+      </div>
+      <a href="/logout">Logout</a>
+    </div>
+    <div class="card">
+      <h3>Account Details</h3>
+      <p>Email: {{ user.email }}</p>
+      <p>Role: {{ user.role }}</p>
+    </div>
+    <div class="card">
+      <h3>Recent Orders</h3>
+      {% if orders %}
+      <table>
+        <tr><th>Order ID</th><th>Total</th><th>Status</th><th>Date</th></tr>
+        {% for order in orders %}
+        <tr>
+          <td>{{ order.id }}</td>
+          <td>${{ order.total }}</td>
+          <td>Confirmed</td>
+          <td>{{ order.created_at }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% else %}
+      <p>No orders yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>

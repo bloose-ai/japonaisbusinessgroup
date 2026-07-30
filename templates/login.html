@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | JBG</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f5f1; margin: 0; padding: 40px; }
+    .card { max-width: 420px; margin: 40px auto; background: white; padding: 28px; border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.08); }
+    h1 { margin-top: 0; }
+    label { display: block; margin-top: 12px; font-weight: 600; }
+    input { width: 100%; padding: 10px; margin-top: 6px; border: 1px solid #ddd; border-radius: 6px; }
+    button { margin-top: 16px; width: 100%; padding: 12px; background: #c99a3b; color: #111; border: none; border-radius: 6px; cursor: pointer; }
+    .message { margin-top: 12px; color: #b4842a; }
+    a { color: #c99a3b; display: inline-block; margin-top: 14px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Login to JBG</h1>
+    <form method="post" action="/login">
+      <label>Email</label>
+      <input type="email" name="email" required>
+      <label>Password</label>
+      <input type="password" name="password" required>
+      <button type="submit">Log In</button>
+    </form>
+    <p class="message">{{ message }}</p>
+    <a href="/register">Create an account</a>
+  </div>
+</body>
+</html>
