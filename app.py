@@ -198,7 +198,16 @@ def admin_page():
     orders = conn.execute('SELECT * FROM orders ORDER BY created_at DESC LIMIT 10').fetchall()
     conn.close()
 
-    return render_template('admin.html', user=dict(user), stats=stats, contacts=[dict(c) for c in contacts], orders=[dict(o) for o in orders])
+    orders_out = []
+    for o in orders:
+        order_dict = dict(o)
+        try:
+            order_dict['item_count'] = len(json.loads(order_dict.get('items_json') or '[]'))
+        except (json.JSONDecodeError, TypeError):
+            order_dict['item_count'] = 0
+        orders_out.append(order_dict)
+
+    return render_template('admin.html', user=dict(user), stats=stats, contacts=[dict(c) for c in contacts], orders=orders_out)
 
 
 @app.get('/api/me')

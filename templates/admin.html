@@ -37,9 +37,9 @@
       <div>
         <h3>Recent Orders</h3>
         <table>
-          <tr><th>Order ID</th><th>Customer</th><th>Total</th></tr>
+          <tr><th>Order ID</th><th>Customer</th><th>Phone</th><th>Items</th></tr>
           {% for order in orders %}
-          <tr><td>{{ order.id }}</td><td>{{ order.customer_name }}</td><td>${{ order.total }}</td></tr>
+          <tr><td>{{ order.id }}</td><td>{{ order.customer_name }}</td><td>{{ order.customer_phone }}</td><td>{{ order.item_count }} item(s)</td></tr>
           {% endfor %}
         </table>
       </div>

@@ -576,7 +576,6 @@ function renderCartPage() {
           <h4>${item.name}</h4>
         </div>
       </td>
-      <td>$${item.price.toLocaleString()}.00</td>
       <td>
         <div class="qty-control">
           <button type="button" data-action="dec" data-id="${item.id}">&minus;</button>
@@ -584,16 +583,14 @@ function renderCartPage() {
           <button type="button" data-action="inc" data-id="${item.id}">&plus;</button>
         </div>
       </td>
-      <td>$${(item.price * item.qty).toLocaleString()}.00</td>
       <td><button type="button" class="remove-btn" data-action="remove" data-id="${item.id}">Remove</button></td>
     </tr>
   `;
   }).join('');
 
-  const { subtotal, delivery, total } = cartTotals();
-  document.getElementById('sumSubtotal').textContent = `$${subtotal.toLocaleString()}.00`;
-  document.getElementById('sumDelivery').textContent = delivery === 0 ? 'Free' : `$${delivery}.00`;
-  document.getElementById('sumTotal').textContent = `$${total.toLocaleString()}.00`;
+  const itemCount = cart.reduce((sum, i) => sum + i.qty, 0);
+  const countEl = document.getElementById('sumItemCount');
+  if (countEl) countEl.textContent = itemCount;
 }
 
 // ==================================================================
@@ -617,14 +614,8 @@ function renderCheckoutSummary() {
   rowsEl.innerHTML = cart.map(item => `
     <div class="checkout-line">
       <span class="ci-name">${item.name} <span class="ci-qty">&times;${item.qty}</span></span>
-      <span class="ci-price">$${(item.price * item.qty).toLocaleString()}.00</span>
     </div>
   `).join('');
-
-  const { subtotal, delivery, total } = cartTotals();
-  document.getElementById('coSubtotal').textContent = `$${subtotal.toLocaleString()}.00`;
-  document.getElementById('coDelivery').textContent = delivery === 0 ? 'Free' : `$${delivery}.00`;
-  document.getElementById('coTotal').textContent = `$${total.toLocaleString()}.00`;
 }
 
 function wireCheckoutForm() {
@@ -636,39 +627,60 @@ function wireCheckoutForm() {
     const cart = getCart();
     if (cart.length === 0) return;
 
-    const { subtotal, delivery, total } = cartTotals();
-    
     // Validate form fields
     const name = document.getElementById('coName')?.value || '';
     const phone = document.getElementById('coPhone')?.value || '';
     const email = document.getElementById('coEmail')?.value || '';
     const address = document.getElementById('coAddress')?.value || '';
     const city = document.getElementById('coCity')?.value || '';
+    const note = document.getElementById('coNote')?.value || '';
 
     if (!name || !phone || !email || !address || !city) {
       alert('Please fill in all required delivery details.');
       return;
     }
 
-    // Save order details to localStorage for reference
-    const orderData = {
-      id: 'JBG-' + Math.random().toString(36).substr(2, 9).toUpperCase(),
-      timestamp: new Date().toISOString(),
-      customer: { name, phone, email, address, city },
-      items: cart,
-      subtotal,
-      delivery,
-      total
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) { submitBtn.textContent = 'SENDING...'; submitBtn.disabled = true; }
+
+    // No pricing is sent — this is a request/inquiry, not a priced order.
+    // The team calls or emails the customer back to confirm pricing.
+    const requestPayload = {
+      customer: { name, phone, email, address, city, note },
+      items: cart.map(i => ({ id: i.id, name: i.name, qty: i.qty })),
+      paymentMethod: 'call-to-confirm'
     };
-    localStorage.setItem('jbg_last_order', JSON.stringify(orderData));
+
+    let orderId = 'JBG-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+
+    try {
+      const { response, result } = await postJson('/api/orders', requestPayload);
+      if (response.ok && result?.order?.id) {
+        orderId = result.order.id;
+      } else if (!response.ok) {
+        console.warn('Order backend responded with an error:', result);
+      }
+    } catch (error) {
+      console.warn('Backend unreachable, request kept locally only:', error);
+    }
+
+    // Keep a local copy too, purely for the customer's own reference
+    localStorage.setItem('jbg_last_order', JSON.stringify({
+      id: orderId,
+      timestamp: new Date().toISOString(),
+      customer: { name, phone, email, address, city, note },
+      items: cart
+    }));
+
+    if (submitBtn) { submitBtn.textContent = originalBtnText; submitBtn.disabled = false; }
 
     // Display confirmation screen
     document.getElementById('checkoutForm').hidden = true;
     document.querySelector('.checkout-summary').hidden = true;
     const confirmEl = document.getElementById('orderConfirm');
     confirmEl.hidden = false;
-    confirmEl.querySelector('.order-number').textContent = orderData.id;
-    confirmEl.querySelector('.order-total').textContent = `$${total.toLocaleString()}.00`;
+    confirmEl.querySelector('.order-number').textContent = orderId;
 
     saveCart([]);
   });
