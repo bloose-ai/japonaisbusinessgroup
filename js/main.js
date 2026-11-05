@@ -258,7 +258,7 @@ const ALL_PRODUCTS = SHOP_PRODUCTS;
 // Returns a real <img> if the product has a photo, otherwise falls back to the SVG placeholder
 function productThumbHTML(p) {
   return p.img
-    ? `<img src="${p.img}" alt="${p.name}">`
+    ? `<img class="product-image" src="${p.img}" alt="${p.name}">`
     : `<div class="placeholder-img">${tubIconSVG()}</div>`;
 }
 
@@ -267,6 +267,18 @@ function tubIconSVG() {
     <path d="M3 12h18M5 12V9a2 2 0 0 1 2-2h1M5 12v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/>
     <circle cx="16" cy="6" r="1.5"/></svg>`;
 }
+
+document.addEventListener('error', (event) => {
+  const image = event.target;
+  if (image.tagName !== 'IMG' || !image.classList.contains('product-image')) return;
+
+  const fallback = document.createElement('div');
+  fallback.className = 'placeholder-img';
+  fallback.setAttribute('role', 'img');
+  fallback.setAttribute('aria-label', image.alt || 'Product image unavailable');
+  fallback.innerHTML = blogIconSVG();
+  image.replaceWith(fallback);
+}, true);
 
 function productCardHTML(p) {
   const productLink = `product.html?id=${p.id}`;
