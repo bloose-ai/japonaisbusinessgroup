@@ -178,12 +178,57 @@ const PRODUCTS = [
   { id: 'p85', name: 'Multi-Function Electric Cooker', price: 68, category: 'Electronics', img: 'images/products/electronics/21.jpg', desc: 'An all-in-one electric cooker combining boiling, frying, and steaming functions in a single compact appliance.' },
 ];
 
+const CATALOG_ONLY_PRODUCTS = [
+  { name: 'Eklis Hydromassage Shower Cabin', category: 'Shower Enclosures', img: 'images/products/bath/Cabina doccia idromassaggio semicerchio Eklis 90 x 90 cm bianca.jpg', desc: 'A compact corner shower cabin with curved glass doors, a built-in seat, and a vertical hydromassage panel. Its rounded footprint is suited to bathrooms where space is limited.' },
+  { name: 'Black Mirror Quadrant Shower Cabin', category: 'Shower Enclosures', img: 'images/products/bath/Cabine de Douche Black Mirror 2 Ronde.jpg', desc: 'A curved corner enclosure with dark reflective glass, a matching black frame, and sliding doors. The striking finish gives a modern look while keeping the shower area enclosed.' },
+  { name: 'Rectangular Glass Shower Cabin', category: 'Shower Enclosures', img: 'images/products/bath/Cabine de douche rectangle 110x80x225cm - scratchy 110.jpg', desc: 'A spacious rectangular enclosure with clear glass panels, a slim metal frame, and a raised shower tray. The simple shape fits neatly along a bathroom wall.' },
+  { name: 'Frascio Satin-Glass Shower Cabin', category: 'Shower Enclosures', img: 'images/products/bath/Duschkabine 190 x 70 cm, H\u00f6he 200cm rechteckig aus satiniertem, geh\u00e4rtetem Glas - FRASCIO.jpg', desc: 'A rectangular shower enclosure with frosted glass panels, a polished metal frame, and wide hinged doors. The satin finish adds privacy while allowing light through.' },
+  { name: 'Insignia Black Steam Shower Cabin', category: 'Shower Enclosures', img: 'images/products/bath/Insignia Black Steam Shower Cabin Enclosure Cubicle 1100x700 Offset RH Quadrant.jpg', desc: 'A curved steam-shower cabin with dark glass, a built-in seat, overhead lighting, and a multi-jet control panel. A complete enclosure designed for a spa-style bathroom.' },
+  { name: 'Novellini Star Glass Shower Cabin', category: 'Shower Enclosures', img: 'images/products/bath/Novellini STAR 2_0 A.jpg', desc: 'A clean-lined glass shower enclosure with clear panels, chrome hardware, and a low-profile tray. Its understated design pairs easily with a range of bathroom finishes.' },
+  { name: 'Gold Stainless-Steel Soap Dish Shelf', category: 'Bathroom Accessories', img: 'images/products/bathroom-accessories/Afralia\u2122 Stainless Steel Bathroom Soap Dish Shelf Wall Mount Storage Holder - short gold.jpg', desc: 'A wall-mounted stainless-steel soap shelf with a warm gold finish and open drainage design. Keeps soap close at hand while helping water drain away.' },
+  { name: 'Chrome Brass Wall-Mounted Soap Holder', category: 'Bathroom Accessories', img: 'images/products/bathroom-accessories/Chrome finished brass Wall-mounted Soap Holder TCB2001 [CB2001] - \u00a319_99.jpg', desc: 'A polished chrome wall-mounted soap holder with a sturdy brass fixture and open wire basket. Its raised design keeps the soap accessible beside a sink or shower.' },
+  { name: 'Sofia Chrome Soap Basket', category: 'Bathroom Accessories', img: 'images/products/bathroom-accessories/Sofia Soap Basket _ Kartners.jpg', desc: 'A compact chrome-finish wire basket with a wall-mounted base. The open design drains easily and provides a tidy place for soap in the shower or beside the basin.' },
+  { name: 'Wall-Mounted Push Soap Dispenser', category: 'Bathroom Accessories', img: 'images/products/bathroom-accessories/Wall mounted soap dispenser with ergonomic push button.jpg', desc: 'A wall-mounted liquid soap dispenser with a dark rectangular body and a front push button. Its fixed position helps keep bathroom counters clear.' },
+  { name: 'TP-Link Tapo Pan-and-Tilt Security Camera', category: 'Security Cameras', img: 'images/products/cameras/1010002653969018037.jpg', desc: 'A compact indoor security camera with a rounded pan-and-tilt head and a desktop-style base. The movable lens can be positioned to monitor a wider area of a room.' },
+  { name: 'Outdoor Wireless Security Camera', category: 'Security Cameras', img: 'images/products/cameras/Outdoor Security Camera \u2013 Smart Home CCTV.jpg', desc: 'An outdoor wireless camera with a weather-ready housing, antennae, and built-in LED lighting around the lens. Designed for mounting outside to monitor entrances and yard areas.' },
+  { name: 'DEKOPRO 198-Piece Home Repair Tool Kit', category: 'Tools & Hardware', img: 'images/products/electronics/DEKOPRO 198 Piece Home Repair Tool Kit, Wrench Plastic Toolbox with General Household Hand Tool Set.jpg', desc: 'A broad household repair set arranged in a carry case, with hand tools, sockets, and accessories held in fitted compartments. A convenient kit for common home maintenance tasks.' },
+  { name: 'Dormer 25-Piece Jobber Drill Set', category: 'Tools & Hardware', img: 'images/products/electronics/Dormer A095204 Jobber Drill Set, Set of 25.jpg', desc: 'A 25-piece jobber drill set supplied in a compact red storage case. The organized layout keeps the drill bits together and easy to select for workshop jobs.' },
+  { name: '9L Fluorine-Free Foam Fire Extinguisher', category: 'Fire Safety', img: 'images/products/fire fighting tools/9L Fluorine Free Foam Extinguisher.jpg', desc: 'A red portable foam extinguisher with a hose, pressure gauge, and carry handle. Its 9-litre size is suited to building and workplace fire-safety setups.' },
+  { name: 'Portable Fire Extinguisher Range', category: 'Fire Safety', img: 'images/products/fire fighting tools/1031324383414589707.jpg', desc: 'A selection of portable fire extinguishers in different sizes and styles, including hose-equipped units. Contact us to confirm the extinguisher type and capacity for your needs.' },
+  { name: 'Coiled Fire Hose', category: 'Fire Safety', img: 'images/products/fire fighting tools/Fire Hose.jpg', desc: 'A bright red fire hose supplied in a compact coil with metal connectors at the ends. The coiled format makes the hose easier to store with emergency equipment.' },
+  { name: 'Outdoor Rescue Helmet with Visor', category: 'Fire Safety', img: 'images/products/fire fighting tools/Outdoor Rescue Helmet, Earthquake Rescue Helmet\u2026.jpg', desc: 'A red protective rescue helmet with a high-visibility yellow band, front light, and clear visor. The adjustable chin strap helps keep it secure during use.' },
+  { name: 'Flame-Resistant Firefighting Gloves', category: 'Fire Safety', img: 'images/products/fire fighting tools/Portable Forest Fire Gloves Outdoor Fire Gloves Flame Retardant Firefighting Forest Gloves.jpg', desc: 'A pair of long-cuff orange protective gloves with reflective yellow bands and reinforced-looking palms. Designed for use as part of firefighting and rescue protective gear.' },
+  { name: 'Fire Protection Equipment', category: 'Fire Safety', img: 'images/products/fire fighting tools/fire protection_ Haseen Habib Trading.jpg', desc: 'A fire-protection installation showing extinguishers, hose reels, and wall-mounted safety equipment. Contact us to discuss equipment and setup for your building.' },
+  { name: 'Wall-Mounted Automatic Hand Dryer', category: 'Hand Dryers', img: 'images/products/hand dryer/hand dryer.jpg', desc: 'A compact wall-mounted hand dryer with a light neutral finish and sensor-style front panel. Its slim profile is suited to washrooms where counter space is limited.' },
+  { name: '24-Inch Heavy-Duty Pipe Wrench', category: 'Plumbing Products', img: 'images/products/plumbing/JRSDRIVE 24-Inch Heavy Duty Adjustable Pipe Wrench Red.jpg', desc: 'A long red adjustable pipe wrench with a heavy-duty handle and toothed jaw. The adjustable head grips pipe and fittings for plumbing and maintenance work.' },
+  { name: '1-Inch Push-Fit Female Ball Valve', category: 'Plumbing Products', img: 'images/products/plumbing/XFITTING 1 in Push Fit X 1 in Female NPT Ball Valve, 1 Inch Push to Connect Female Ball Valve, 1 Piece.jpg', desc: 'A brass shut-off valve with a red lever and female threaded connection. The push-fit end is designed for a quick connection to compatible pipe.' },
+  { name: '3/4-Inch Push-Fit Stop Valve with Drain', category: 'Plumbing Products', img: 'images/products/plumbing/XFITTING 3_4 inch Push Fit Stop Valve with Drain and Vent, Push to Connect Brass Plumbing Fitting, Pex Pipe, Copper, CPVC, PE-RT, HDPE, 2-5-2=2, 2.jpg', desc: 'A brass push-fit stop valve with a blue handwheel and integrated drain point. It is designed to shut off compatible plumbing lines and provide a convenient drain connection.' },
+  { name: 'Smeg Four-Door Side-by-Side Fridge Freezer', category: 'Refrigerators', img: 'images/products/refrigerators/Smeg four door side-by-side fridge freezer.jpg', desc: 'A stainless-steel four-door refrigerator with a built-in water and ice dispenser. The wide side-by-side layout separates fresh-food and freezer storage for easy access.' },
+  { name: 'Double-Door Stainless-Steel Refrigerator', category: 'Refrigerators', img: 'images/products/refrigerators/907053181219988213.jpg', desc: 'A freestanding stainless-steel refrigerator with a top freezer and a lower fresh-food compartment. The two-door design provides separate access to everyday chilled and frozen items.' },
+  { name: 'Brushed-Nickel Wall-Mount Kitchen Faucet', category: 'Water Taps', img: 'images/products/water taps/(eBay) Wall Mount Kitchen Tap Single Handle Faucet Swivel Sink Mixer Tap Brushed Nickel.jpg', desc: 'A brushed-nickel wall-mounted kitchen faucet with a high-arc pull-down spray head and single control handle. Its flexible-looking sprayer is convenient for rinsing dishes and the sink.' },
+  { name: 'Matte-Black Pull-Down Kitchen Faucet', category: 'Water Taps', img: 'images/products/water taps/1082904672874131050.jpg', desc: 'A tall matte-black kitchen faucet with a curved spout, pull-down spray head, and single side handle. The dark finish adds a modern accent to a kitchen sink.' },
+  { name: 'Matte-Black Pull-Down Kitchen Faucet (Style 2)', category: 'Water Taps', img: 'images/products/water taps/1082904672874131050 (1).jpg', desc: 'A contemporary black kitchen mixer with a high gooseneck spout and detachable spray head. The single-lever control keeps water adjustment simple at the sink.' },
+  { name: 'Three-Way Kitchen Mixer Tap with Filter', category: 'Water Taps', img: 'images/products/water taps/3 Way Kitchen Mixer Tap Water Filter Chrome 360 Swivel Dual Lever Sink Tap.jpg', desc: 'A polished chrome kitchen tap with a high swivel spout and separate controls for regular and filtered water. Combines multiple water outlets in one sink-mounted fitting.' },
+  { name: 'Chrome High-Arc Basin Mixer Tap', category: 'Water Taps', img: 'images/products/water taps/Funime Modern Basin Taps Mixers Bathroom Sink Taps\u2026.jpg', desc: 'A modern chrome basin mixer with a tall curved spout and single lever. Its high-arc shape provides useful clearance above a bathroom basin.' },
+  { name: 'KohlerBeam Wall-Mounted Kitchen Faucet', category: 'Water Taps', img: 'images/products/water taps/KohlerBeam Wall-Mounted Kitchen Faucet  Polished Chrome10-YearWarranty 22%offer (1k boughtlast month.jpg', desc: 'A polished chrome wall-mounted kitchen faucet with a tall curved neck and pull-down spray head. Mounting it on the wall leaves more usable space around the sink.' },
+  { name: 'Lusk Chrome Basin Mixer Tap', category: 'Water Taps', img: 'images/products/water taps/Lusk Basin Mixer Tap _ Chrome _ Bathroom Mountain.jpg', desc: 'A polished chrome basin mixer with a clean, angular body and single top-mounted lever. A simple contemporary fitting for a bathroom sink.' },
+  { name: 'Gold Stainless-Steel Drinking-Water Filter Tap', category: 'Water Taps', img: 'images/products/water taps/Premium 304 Stainless Steel Gold Faucet Drinking Water Filter Tap Kitchen Basin Swivel Spout.jpg', desc: 'A slim gold-finish drinking-water tap with a high curved spout, shown mounted beside a kitchen sink. Its separate form suits setups with a dedicated filtered-water outlet.' },
+  { name: 'Chrome Wall-Mounted ABS Water Tap', category: 'Water Taps', img: 'images/products/water taps/SSZ1001(chromed) ABS Water Tap.jpg', desc: 'A compact chrome-finish wall-mounted tap with a straight spout and top lever. Its simple shape works for utility, bathroom, or outdoor water points.' },
+  { name: 'Chrome Wall-Mounted Dual-Spout Mixer Tap', category: 'Water Taps', img: 'images/products/water taps/Zinc Alloy Basin Faucets Chrome Wall Mounted Hot Cold Water Dual Spout Mixer Tap For Bathroom.jpg', desc: 'A wall-mounted chrome mixer tap with separate hot- and cold-water controls and a short downward spout. A practical choice for a bathroom or utility sink.' },
+  { name: 'Outdoor CCTV Camera System Kit', category: 'Security Cameras', img: 'images/products/cameras/How to Protect your Outdoor CCTV camera from Rains_.jpg', desc: 'A multi-camera outdoor security kit shown with a recorder, cameras, cabling, and power accessories. Contact us to confirm the package contents and camera configuration.' },
+  { name: 'Outdoor Bullet Security Camera', category: 'Security Cameras', img: 'images/products/cameras/Make $10,000+ every month.jpg', desc: 'A wall-mounted bullet-style security camera with a protective housing and adjustable mounting bracket. Its outdoor design is suited to monitoring entrances and perimeter areas.' },
+  { name: 'Compact Household Tool Kit', category: 'Tools & Hardware', img: 'images/products/electronics/Page Not Found.jpg', desc: 'A portable household tool set arranged in a compact carry case, with common hand tools held in fitted compartments for storage and easy access.' },
+  { name: 'Wall-Mounted Automatic Hand Dryer (Style 2)', category: 'Hand Dryers', img: 'images/products/hand dryer/The Benefits of Using Hand Dryer.jpg', desc: 'A white wall-mounted hand dryer with a curved housing and automatic-sensor graphic on the front. Its compact shape is designed for shared washrooms.' },
+  { name: 'Bottom-Freezer Refrigerator', category: 'Refrigerators', img: 'images/products/refrigerators/Fini les mauvaises odeurs dans le frigo !.jpg', desc: 'A tall two-door refrigerator with a stainless-look finish and a lower freezer compartment. The separate lower drawer keeps frozen items apart from fresh-food storage.' },
+  { name: 'Instant Hot-and-Cold Kitchen Faucet', category: 'Water Taps', img: 'images/products/water taps/Instant  boiling water_ Icy cold water_ \ud83d\udc40 Why\u2026.jpg', desc: 'A high-arc stainless-look kitchen faucet shown over a sink, with an instant hot-water feature highlighted in the image. Contact us to confirm the available water functions and installation requirements.' },
+].map((product, index) => ({ ...product, id: `catalog-${index + 1}`, price: null, quoteOnly: true }));
+
 // ---- Category metadata (slug, display name, representative image) ----
 const CATEGORIES = [
-  { slug: 'bathtubs', name: 'Bathtubs', img: 'images/products/bathtubs/1.jpg', count: 4 },
+  { slug: 'bathtubs', name: 'Bathtubs', img: 'images/cat-bathtubs.jpg', count: 4 },
   { slug: 'bath-cabinets', name: 'Bath Cabinets', img: 'images/products/bath-cabinets/1.jpeg', count: 2 },
-  { slug: 'mirrors', name: 'Mirrors', img: 'images/products/mirrors/1.jpeg', count: 6 },
-  { slug: 'refrigerators', name: 'Refrigerators', img: 'images/products/refrigerators/1.jpg', count: 1 },
+  { slug: 'mirrors', name: 'Mirrors', img: 'images/cat-mirrors.jpg', count: 6 },
+  { slug: 'refrigerators', name: 'Refrigerators', img: 'images/cat-refrigerators.jpg', count: 1 },
   { slug: 'gas-cookers', name: 'Gas Cookers', img: 'images/products/gas-cookers/1.jpg', count: 1 },
   { slug: 'cameras', name: 'Security Cameras', img: 'images/products/cameras/1.jpg', count: 2 },
   { slug: 'camera-accessories', name: 'Camera & Studio Accessories', img: 'images/products/camera-accessories/1.jpeg', count: 1 },
@@ -193,16 +238,25 @@ const CATEGORIES = [
   { slug: 'toilets', name: 'Toilets & Urinals', img: 'images/products/toilets/1.jpeg', count: 7 },
   { slug: 'plumbing', name: 'Plumbing Products', img: 'images/products/plumbing/1.jpeg', count: 5 },
   { slug: 'bathroom-accessories', name: 'Bathroom Accessories', img: 'images/products/bathroom-accessories/1.jpeg', count: 7 },
-  { slug: 'lighting', name: 'Lighting', img: 'images/products/lighting/1.jpeg', count: 21 },
-  { slug: 'electronics', name: 'Electronics', img: 'images/products/electronics/1.jpeg', count: 21 },
+  { slug: 'shower-enclosures', name: 'Shower Enclosures', img: 'images/products/bath/Insignia Black Steam Shower Cabin Enclosure Cubicle 1100x700 Offset RH Quadrant.jpg', count: 0 },
+  { slug: 'tools-hardware', name: 'Tools & Hardware', img: 'images/products/electronics/DEKOPRO 198 Piece Home Repair Tool Kit, Wrench Plastic Toolbox with General Household Hand Tool Set.jpg', count: 0 },
+  { slug: 'fire-safety', name: 'Fire Safety', img: 'images/products/fire fighting tools/9L Fluorine Free Foam Extinguisher.jpg', count: 0 },
+  { slug: 'hand-dryers', name: 'Hand Dryers', img: 'images/products/hand dryer/hand dryer.jpg', count: 0 },
+  { slug: 'water-taps', name: 'Water Taps', img: 'images/products/water taps/3 Way Kitchen Mixer Tap Water Filter Chrome 360 Swivel Dual Lever Sink Tap.jpg', count: 0 },
+  { slug: 'lighting', name: 'Lighting', img: 'images/cat-lighting.jpg', count: 21 },
+  { slug: 'electronics', name: 'Electronics', img: 'images/cat-electronics.jpg', count: 21 },
 ];
+const SHOP_PRODUCTS = PRODUCTS.concat(CATALOG_ONLY_PRODUCTS);
+CATEGORIES.forEach(category => {
+  category.count = SHOP_PRODUCTS.filter(product => product.category === category.name).length;
+});
 
 // ---- Featured products (curated picks shown on homepage, span multiple categories) ----
 const FEATURED_IDS = ['p1', 'p35', 'p13', 'p8', 'p83', 'p14'];
 const FEATURED_PRODUCTS = FEATURED_IDS.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
 
 // Combined lookup used by the product detail page (FEATURED_PRODUCTS is already a subset of PRODUCTS)
-const ALL_PRODUCTS = PRODUCTS;
+const ALL_PRODUCTS = SHOP_PRODUCTS;
 
 // Returns a real <img> if the product has a photo, otherwise falls back to the SVG placeholder
 function productThumbHTML(p) {
@@ -218,13 +272,15 @@ function tubIconSVG() {
 }
 
 function productCardHTML(p) {
+  const productLink = `product.html?id=${p.id}`;
+  const action = `<a href="#" class="btn btn-primary btn-small add-to-cart" data-id="${p.id}" data-name="${p.name}" data-price="${p.price ?? ''}">ADD TO CART</a>`;
   return `
     <div class="prod-card">
-      <a href="product.html?id=${p.id}" class="thumb">${productThumbHTML(p)}</a>
+      <a href="${productLink}" class="thumb">${productThumbHTML(p)}</a>
       <div class="prod-info">
         <span class="prod-cat">${p.category}</span>
-        <h4><a href="product.html?id=${p.id}">${p.name}</a></h4>
-        <a href="#" class="btn btn-primary btn-small add-to-cart" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}">ADD TO CART</a>
+        <h4><a href="${productLink}">${p.name}</a></h4>
+        ${action}
       </div>
     </div>
   `;
@@ -259,18 +315,18 @@ function renderProducts() {
   const { cats, min, max } = readFilterState();
   const activeNames = CATEGORIES.filter(c => cats.includes(c.slug)).map(c => c.name);
 
-  let list = PRODUCTS.slice();
+  let list = SHOP_PRODUCTS.slice();
   if (activeNames.length) {
     list = list.filter(p => activeNames.includes(p.category));
   }
-  list = list.filter(p => p.price >= min && p.price <= max);
+  list = list.filter(p => p.quoteOnly || (p.price >= min && p.price <= max));
   if (query) {
     list = list.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
   }
 
   const sort = currentSort();
-  if (sort === 'price-asc') list.sort((a, b) => a.price - b.price);
-  else if (sort === 'price-desc') list.sort((a, b) => b.price - a.price);
+  if (sort === 'price-asc') list.sort((a, b) => (a.price ?? Infinity) - (b.price ?? Infinity));
+  else if (sort === 'price-desc') list.sort((a, b) => (b.price ?? -Infinity) - (a.price ?? -Infinity));
 
   // Page heading / breadcrumb / document title
   const headingEl = document.getElementById('shopHeading');
@@ -282,7 +338,7 @@ function renderProducts() {
   if (titleTag) titleTag.textContent = `${label} | JBG`;
 
   const countEl = document.getElementById('resultCount');
-  if (countEl) countEl.textContent = `Showing ${list.length} of ${PRODUCTS.length} results`;
+  if (countEl) countEl.textContent = `Showing ${list.length} of ${SHOP_PRODUCTS.length} results`;
 
   grid.innerHTML = list.length
     ? list.map(productCardHTML).join('')
@@ -500,11 +556,12 @@ function saveCart(cart) {
 
 function addToCart(id, name, price) {
   const cart = getCart();
+  const itemPrice = price === null || price === '' || price === 'null' ? null : Number(price);
   const existing = cart.find(i => i.id === id);
   if (existing) {
     existing.qty += 1;
   } else {
-    cart.push({ id, name, price: Number(price), qty: 1 });
+    cart.push({ id, name, price: itemPrice, qty: 1 });
   }
   saveCart(cart);
 }
