@@ -93,7 +93,7 @@ function updateSeoMetadata(description, canonicalPath) {
   const descriptionTag = document.querySelector('meta[name="description"]');
   const canonicalTag = document.querySelector('link[rel="canonical"]');
   if (descriptionTag) descriptionTag.content = description;
-  if (canonicalTag) canonicalTag.href = new URL(canonicalPath, 'https://japonaisbusinessgroup.com').href;
+  if (canonicalTag) canonicalTag.href = new URL(canonicalPath, 'https://www.japonaisbusinessgroup.com').href;
 }
 
 // ---- Product data (all categories) ----
@@ -958,6 +958,7 @@ function renderBlogPost() {
   const post = BLOG_POSTS.find(p => p.id === postId) || BLOG_POSTS[0];
 
   document.getElementById('postTitleTag').textContent = `${post.title} | JBG Blog`;
+  updateSeoMetadata(post.body[0], `/blog-post.html?post=${encodeURIComponent(post.id)}`);
   document.getElementById('postTitleHead').textContent = post.title;
   document.getElementById('postCrumb').textContent = post.title;
   document.getElementById('postMeta').textContent = `By ${post.author} · ${post.date}`;

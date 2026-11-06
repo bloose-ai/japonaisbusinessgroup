@@ -99,11 +99,9 @@ init_db()
 
 
 @app.before_request
-def redirect_www_to_apex():
-    hostname = request.host.partition(':')[0].lower()
-    if hostname == 'www.japonaisbusinessgroup.com' or (hostname == 'japonaisbusinessgroup.com' and request.path == '/index.html'):
-        path = '/' if request.path == '/index.html' else request.full_path.rstrip('?')
-        return redirect(f'https://japonaisbusinessgroup.com{path}', code=301)
+def redirect_duplicate_home():
+    if request.path == '/index.html':
+        return redirect('https://www.japonaisbusinessgroup.com/', code=308)
 
 
 @app.get('/')

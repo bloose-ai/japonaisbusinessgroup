@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/index.html",
-      "destination": "https://japonaisbusinessgroup.com/",
+      "destination": "https://www.japonaisbusinessgroup.com/",
       "permanent": true
     },
     {
@@ -10,10 +10,10 @@
       "has": [
         {
           "type": "host",
-          "value": "www.japonaisbusinessgroup.com"
+          "value": "japonaisbusinessgroup.com"
         }
       ],
-      "destination": "https://japonaisbusinessgroup.com/:path*",
+      "destination": "https://www.japonaisbusinessgroup.com/:path*",
       "permanent": true
     }
   ]
