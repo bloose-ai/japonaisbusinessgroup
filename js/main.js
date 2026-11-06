@@ -47,7 +47,7 @@ function renderFooter() {
         <div>
           <h4>QUICK LINKS</h4>
           <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="category.html">Shop</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="blog.html">Blog</a></li>
@@ -87,6 +87,13 @@ function renderFooter() {
       </div>
     </div>
   `;
+}
+
+function updateSeoMetadata(description, canonicalPath) {
+  const descriptionTag = document.querySelector('meta[name="description"]');
+  const canonicalTag = document.querySelector('link[rel="canonical"]');
+  if (descriptionTag) descriptionTag.content = description;
+  if (canonicalTag) canonicalTag.href = new URL(canonicalPath, 'https://japonaisbusinessgroup.com').href;
 }
 
 // ---- Product data (all categories) ----
@@ -374,8 +381,16 @@ function renderProducts() {
   const titleTag = document.getElementById('shopTitleTag');
   const label = activeNames.length === 1 ? activeNames[0] : (query ? `Search: "${params.get('q')}"` : 'All Products');
   if (headingEl) headingEl.textContent = label;
-  if (crumbEl) crumbEl.innerHTML = (activeNames.length || query) ? `<a href="index.html">Home</a> &gt; <a href="category.html">Shop</a> &gt; ${label}` : `<a href="index.html">Home</a> &gt; Shop`;
-  if (titleTag) titleTag.textContent = `${label} | JBG`;
+  if (crumbEl) crumbEl.innerHTML = (activeNames.length || query) ? `<a href="/">Home</a> &gt; <a href="category.html">Shop</a> &gt; ${label}` : `<a href="/">Home</a> &gt; Shop`;
+  const seoTitle = `${label} | Japonais Business Group`;
+  if (titleTag) titleTag.textContent = seoTitle;
+  const seoDescription = activeNames.length
+    ? `Browse ${activeNames.join(', ')} products from Japonais Business Group in Rwanda.`
+    : query
+      ? `Search Japonais Business Group products for ${params.get('q')}.`
+      : 'Browse the full range of products from Japonais Business Group in Rwanda.';
+  const canonicalCategory = cats.length ? `?cat=${encodeURIComponent(cats.slice().sort().join(','))}` : '';
+  updateSeoMetadata(seoDescription, `/category.html${canonicalCategory}`);
 
   const countEl = document.getElementById('resultCount');
   if (countEl) countEl.textContent = `Showing ${list.length} of ${SHOP_PRODUCTS.length} results`;
@@ -526,7 +541,10 @@ function renderProductPage() {
   const productId = params.get('id');
   const product = ALL_PRODUCTS.find(p => p.id === productId) || ALL_PRODUCTS[0];
 
-  document.getElementById('pTitleTag').textContent = `${product.name} | JBG`;
+  const duplicateName = ALL_PRODUCTS.some(item => item.id !== product.id && item.name === product.name);
+  const seoTitle = `${product.name}${duplicateName ? ` | ${product.category} ${product.id}` : ''} | Japonais Business Group`;
+  document.getElementById('pTitleTag').textContent = seoTitle;
+  updateSeoMetadata(product.desc, `/product.html?id=${encodeURIComponent(product.id)}`);
   titleEl.textContent = product.name;
   document.getElementById('pCrumb').textContent = product.name;
   document.getElementById('pCategory').textContent = product.category;

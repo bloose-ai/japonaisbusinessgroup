@@ -29,6 +29,14 @@ function writeJson(filePath, data) {
 }
 
 app.use(express.json({ limit: '1mb' }));
+app.use((req, res, next) => {
+  const hostname = req.hostname.toLowerCase();
+  if (hostname === 'www.japonaisbusinessgroup.com' || (hostname === 'japonaisbusinessgroup.com' && req.path === '/index.html')) {
+    const destinationPath = req.path === '/index.html' ? '/' : req.originalUrl;
+    return res.redirect(301, `https://japonaisbusinessgroup.com${destinationPath}`);
+  }
+  next();
+});
 app.use(express.static(rootDir, { index: 'index.html' }));
 
 app.get('/api/health', (req, res) => {

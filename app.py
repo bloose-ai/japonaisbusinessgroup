@@ -98,6 +98,14 @@ def require_login():
 init_db()
 
 
+@app.before_request
+def redirect_www_to_apex():
+    hostname = request.host.partition(':')[0].lower()
+    if hostname == 'www.japonaisbusinessgroup.com' or (hostname == 'japonaisbusinessgroup.com' and request.path == '/index.html'):
+        path = '/' if request.path == '/index.html' else request.full_path.rstrip('?')
+        return redirect(f'https://japonaisbusinessgroup.com{path}', code=301)
+
+
 @app.get('/')
 def home():
     return send_from_directory(ROOT_DIR, 'index.html')
