@@ -957,8 +957,8 @@ function renderBlogPost() {
   const postId = params.get('post');
   const post = BLOG_POSTS.find(p => p.id === postId) || BLOG_POSTS[0];
 
-  document.getElementById('postTitleTag').textContent = `${post.title} | JBG Blog`;
-  updateSeoMetadata(post.body[0], `/blog-post.html?post=${encodeURIComponent(post.id)}`);
+  document.getElementById('postTitleTag').textContent = `${post.title} | Japonais Business Group Blog`;
+  updateSeoMetadata(post.excerpt, `/blog-post.html?post=${encodeURIComponent(post.id)}`);
   document.getElementById('postTitleHead').textContent = post.title;
   document.getElementById('postCrumb').textContent = post.title;
   document.getElementById('postMeta').textContent = `By ${post.author} · ${post.date}`;
