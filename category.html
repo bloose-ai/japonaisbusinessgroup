@@ -7,6 +7,14 @@
 <title id="shopTitleTag">Shop Products | Japonais Business Group</title>
 <meta name="description" content="Browse home, bathroom, lighting, plumbing, electronics, and safety products from Japonais Business Group in Rwanda." />
 <link rel="canonical" href="https://www.japonaisbusinessgroup.com/category.html" />
+<script>
+  if (new URLSearchParams(window.location.search).get('cat') === 'refrigerators') {
+    const robotsMeta = document.createElement('meta');
+    robotsMeta.name = 'robots';
+    robotsMeta.content = 'noindex, follow';
+    document.head.append(robotsMeta);
+  }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
